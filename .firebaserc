@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "bento-starter"
+    "default": "egg-habit",
+    "staging": "egg-habit"
   }
 }
