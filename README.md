@@ -9,7 +9,7 @@
 
 this app was bootstrapped with ([bento-starter](https://bento-starter.netlify.com/overview/) (an open-source Vue.js, Firebase, PWA kit), ([Vue/Vuex](https://vuex.vuejs.org/installation.html), Firebase) JavaScript, and CSS.
 
-## Project Status
+## project status
 
 view my PWA publically @ [egg-habit.web.app](https://egg-habit.web.app/home/). this project is currently in development.
 
@@ -32,9 +32,9 @@ mobile
 desktop
 <img src="">
 
-## installation & Setup
+## installation & setup
 
-Clone this repository. You will need `node` and `npm` installed globally on your machine.
+clone this repository. you will need `node` and `npm` installed globally on your machine.
 
 `npm install` to install dependencies
 
