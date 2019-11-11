@@ -1,18 +1,16 @@
 <template>
   <div class="page-wrapper">
-    <h1 class="home-page-title">YOU CAN DO IT</h1>
-    <img alt="logo-bento" class="logo" src="@/assets/img/bento-starter.svg" />
-
     <input
-      v-if="!habits[0].show"
+      v-if="!showHabit"
+      id="habit-input"
       type="text"
       name="input-habit"
-      placeholder="TYPE A HABIT"
+      placeholder="this week I will..."
       @keyup.enter="addHabit"
     />
-
-    <div v-if="habits[0].show" class="habit">
+    <div v-if="showHabit" class="habit">
       <div id="habit-name">{{ habits[0].text }}</div>
+      <!-- <button id="delete-habit" value="x" @click="removeHabit">x</button> -->
       <div class="habit-tracker">
         <input
           v-for="day in days"
@@ -24,9 +22,9 @@
       </div>
     </div>
 
-    <!-- <button class="swal2-confirm swal2-styled" @click="createGoal">
-      CREATE A GOAL
-    </button>-->
+    <img alt="egg" class="egg" src="@/assets/img/happy-yolk.png" />
+    <img id="egg-bubble" src="@/assets/img/speech-bubble.png" />
+    <h1 class="egg-text">YOLK CAN DO IT!</h1>
   </div>
 </template>
 
@@ -47,7 +45,7 @@ export default {
       ],
       habits: [
         {
-          text: 'meow',
+          text: '',
           show: false,
           days: {
             sunday: false,
@@ -63,6 +61,9 @@ export default {
     }
   },
   computed: {
+    showHabit() {
+      return this.habits[0].show
+    },
     allTasksButOneCompleted() {
       const arrayOfVal = Object.values(this.habits[0].days)
       console.log(arrayOfVal)
@@ -92,14 +93,28 @@ export default {
     },
     removeHabit() {
       Swal.fire({
-        title: 'Are you sure?',
+        title: 'Are you sure you want to delete?',
         text: 'You will lose your goal data!',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, logout'
-      })
+        confirmButtonText: 'Yes, delete'
+      }).then(
+        (this.habits[0] = {
+          text: '',
+          show: false,
+          days: {
+            sunday: false,
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false
+          }
+        })
+      )
     },
     allComplete() {
       if (this.allTasksButOneCompleted) {
@@ -126,7 +141,7 @@ export default {
   head() {
     return {
       title: {
-        inner: 'Home'
+        inner: 'home'
       },
       meta: [
         {
@@ -143,6 +158,43 @@ export default {
 <style lang="scss" scoped>
 // @import '@/theme/variables.scss';
 
+.egg {
+  animation: MoveUpDown 2s linear infinite;
+  position: absolute;
+  width: 250px;
+  left: auto;
+  margin: 0px 0px 50px 0px;
+}
+
+.egg-text {
+  text-align: center;
+  font-size: 20pt;
+  max-width: 150px;
+  left: auto;
+  margin: 0px 0px 363px 0px;
+  position: absolute;
+  animation: MoveUpDown 2s linear infinite;
+}
+
+#egg-bubble {
+  text-align: center;
+  left: auto;
+  margin: 0px 0px 300px 0px;
+  width: 200px;
+  position: absolute;
+  animation: MoveUpDown 2s linear infinite;
+}
+
+@keyframes MoveUpDown {
+  0%,
+  100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 30px;
+  }
+}
+
 .habit {
   font-weight: bold;
   font-size: 50px;
@@ -150,16 +202,37 @@ export default {
   padding: 0px;
 }
 
+#habit-input {
+  font-size: 20pt;
+  text-align: center;
+  padding: 10px;
+  margin: 20px;
+}
+
+#habit-name {
+  font-size: 20pt;
+  text-align: center;
+  margin: 20px;
+}
+
 .habit-tracker {
   display: flex;
   flex-direction: row;
+  justify-items: center;
+}
+
+#delete-habit {
+  width: 25px;
+  text-align: center;
 }
 
 #habit-day {
-  width: 40px !important;
-  height: 40px !important;
-  margin: 0px;
-  border: 2px black;
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  margin: 10px;
 }
 
 .page-wrapper {
@@ -170,10 +243,6 @@ export default {
 
   .logo {
     margin-bottom: 3rem;
-  }
-
-  .home-page-title {
-    text-align: center;
   }
 
   .documentation-link {

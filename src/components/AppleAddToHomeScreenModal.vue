@@ -3,12 +3,9 @@
     <div class="modal-wrapper">
       <div class="close" @click="$emit('close')"></div>
       <div class="main-content">
-        <img class="app-logo" src="@/assets/logo.png" />
-        <h3 class="title">Install {{ appTitle }}</h3>
-        <p class="description">
-          Install this application to your home screen for quickly and easy
-          access when you're on the go.
-        </p>
+        <img class="app-logo" src="@/assets/img/happy-yolk.png" />
+        <h3 class="title">install {{ appTitle }}</h3>
+        <p class="description">add this {{ appTitle }} to your home screen!</p>
       </div>
 
       <div class="footer">
