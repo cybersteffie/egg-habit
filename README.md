@@ -1,15 +1,13 @@
 <p align="center">this was created during my time as a student at <a href="https://codechrysalis.io">code chrysalis</a>.
 
 </p>
-<p align="center"><img src="" width="300" /></p>
+<p align="center"><img src="./src/assets/img/happy-yolk.png" width="300px" /></p>
 
 # egg-habit
 
 #### emotional support habit builder: let eggchan help you build healthy habits!
 
-A responsive webapp to encourage you to stick to your goals and form healthier habits!
-
-**Technologies used**: bentostarter ([Vue/Vuex](https://vuex.vuejs.org/installation.html), Firebase) JavaScript, and CSS.
+this app was bootstrapped with ([bento-starter](https://bento-starter.netlify.com/overview/) (an open-source Vue.js, Firebase, PWA kit), ([Vue/Vuex](https://vuex.vuejs.org/installation.html), Firebase) JavaScript, and CSS.
 
 ## Project Status
 
