@@ -63,19 +63,21 @@ export default {
     }
   },
   computed: {
-    allTasksButOne() {
+    allTasksButOneCompleted() {
       const arrayOfVal = Object.values(this.habits[0].days)
+      console.log(arrayOfVal)
       let count = 0
 
       for (let i = 0; i < arrayOfVal.length; i += 1) {
         if (arrayOfVal[i] === true) {
           count += 1
         }
+        if (count >= 7) {
+          count = 0
+          return true
+        }
       }
-
-      if (count >= 6) {
-        return true
-      }
+      count = 0
       return false
     }
   },
@@ -85,8 +87,8 @@ export default {
       this.habits[0].show = true
     },
     toggleDay(dayToToggle) {
+      this.habits[0].days[dayToToggle] = true
       this.allComplete()
-      this.habits[0].days[dayToToggle] = !this.habits[0].days[dayToToggle]
     },
     removeHabit() {
       Swal.fire({
@@ -100,13 +102,24 @@ export default {
       })
     },
     allComplete() {
-      if (this.allTasksButOne) {
+      if (this.allTasksButOneCompleted) {
         this.habits[0].show = false
+        console.log('allCompleteFunc', this.habits[0].days)
         Swal.fire({
           title: `You're freakin' awesome!`,
           text: 'One week down.',
           icon: 'success'
-        })
+        }).then(
+          (this.habits[0].days = {
+            sunday: false,
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false
+          })
+        )
       }
     }
   },
