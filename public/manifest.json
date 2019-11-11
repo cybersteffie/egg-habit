@@ -1,6 +1,6 @@
 {
-  "name": "Bento Starter",
-  "short_name": "Bento",
+  "name": "egg-habit",
+  "short_name": "egg-habit",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",

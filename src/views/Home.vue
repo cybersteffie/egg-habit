@@ -4,14 +4,14 @@
     <img alt="logo-bento" class="logo" src="@/assets/img/bento-starter.svg" />
 
     <input
-      v-if="!habits[0].added"
+      v-if="!habits[0].show"
       type="text"
       name="input-habit"
       placeholder="TYPE A HABIT"
       @keyup.enter="addHabit"
     />
 
-    <div v-if="habits[0].added" class="habit">
+    <div v-if="habits[0].show" class="habit">
       <div id="habit-name">{{ habits[0].text }}</div>
       <div class="habit-tracker">
         <input
@@ -48,7 +48,7 @@ export default {
       habits: [
         {
           text: 'meow',
-          added: false,
+          show: false,
           days: {
             sunday: false,
             monday: false,
@@ -63,14 +63,26 @@ export default {
     }
   },
   computed: {
-    taskCompleted() {
-      return this.habits[0].days.friday
+    allTasksButOne() {
+      const arrayOfVal = Object.values(this.habits[0].days)
+      let count = 0
+
+      for (let i = 0; i < arrayOfVal.length; i += 1) {
+        if (arrayOfVal[i] === true) {
+          count += 1
+        }
+      }
+
+      if (count >= 6) {
+        return true
+      }
+      return false
     }
   },
   methods: {
     addHabit(event) {
       this.habits[0].text = event.target.value
-      this.habits[0].added = true
+      this.habits[0].show = true
     },
     toggleDay(dayToToggle) {
       this.allComplete()
@@ -88,7 +100,8 @@ export default {
       })
     },
     allComplete() {
-      if (this.taskCompleted) {
+      if (this.allTasksButOne) {
+        this.habits[0].show = false
         Swal.fire({
           title: `You're freakin' awesome!`,
           text: 'One week down.',
