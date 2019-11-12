@@ -1,14 +1,13 @@
 {
   "name": "egg-habit",
   "short_name": "egg-habit",
-  "icons": [
-    {
-      "src": "./img/icons/android-chrome-192x192.png",
+  "icons": [{
+      "src": "./img/favicon.ico",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./img/icons/android-chrome-512x512.png",
+      "src": "./img/favicon.ico",
       "sizes": "512x512",
       "type": "image/png"
     }
