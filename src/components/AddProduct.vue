@@ -8,13 +8,6 @@
       @input="setProductNameToCreate($event.target.value)"
       @keypress.enter="triggerAddProductAction"
     />
-    <div
-      :class="{ disabled: productCreationPending }"
-      class="create-product-btn"
-      @click="triggerAddProductAction"
-    >
-      add product
-    </div>
   </div>
 </template>
 
