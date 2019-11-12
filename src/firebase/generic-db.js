@@ -1,6 +1,5 @@
 import { isNil, keys, cloneDeep } from 'lodash'
 import firebase from 'firebase/app'
-
 import firestore from './async-firestore'
 
 export default class GenericDB {
@@ -13,6 +12,7 @@ export default class GenericDB {
    * @param data
    * @param id
    */
+
   async create(data, id = null) {
     const collectionRef = (await firestore()).collection(this.collectionPath)
     const serverTimestamp = firebase.firestore.FieldValue.serverTimestamp()
@@ -23,11 +23,9 @@ export default class GenericDB {
       updateTimestamp: serverTimestamp
     }
 
-    const createPromise = isNil(id)
-      ? // Create doc with generated id
-        collectionRef.add(dataToCreate).then(doc => doc.id)
-      : // Create doc with custom id
-        collectionRef
+    const createPromise = isNil(id) // Create doc with generated id
+      ? collectionRef.add(dataToCreate).then(doc => doc.id) // Create doc with custom id
+      : collectionRef
           .doc(id)
           .set(dataToCreate)
           .then(() => id)
@@ -57,7 +55,10 @@ export default class GenericDB {
     if (isNil(data)) return null
 
     this.convertObjectTimestampPropertiesToDate(data)
-    return { id, ...data }
+    return {
+      id,
+      ...data
+    }
   }
 
   /**
