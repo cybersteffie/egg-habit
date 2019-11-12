@@ -2,14 +2,13 @@
   <div class="page-wrapper">
     <Habit />
 
+    <img alt="egg" class="egg" src="@/assets/img/happy-yolk.png" />
     <img
-      alt="egg"
-      class="egg"
-      src="@/assets/img/happy-yolk.png"
+      id="egg-bubble"
+      src="@/assets/img/speech-bubble.png"
       @click="changeSelectedQuote"
     />
-    <img id="egg-bubble" src="@/assets/img/speech-bubble.png" />
-    <h1 class="egg-text">{{ showQuote }}</h1>
+    <h1 class="egg-text" @click="changeSelectedQuote">{{ showQuote }}</h1>
   </div>
 </template>
 
@@ -84,7 +83,25 @@ export default {
     margin: 0px 0px 50px 0px;
   }
 
+  .egg:hover {
+    animation: Tickle 0.3s linear infinite;
+    position: absolute;
+    width: 250px;
+    right: auto;
+    margin: 0px 0px 50px 0px;
+  }
+
+  .egg:active {
+    animation: Shake 0.3s;
+    position: absolute;
+    width: 250px;
+    right: auto;
+    bottom: auto;
+    margin: 0px 0px 50px 0px;
+  }
+
   .egg-text {
+    cursor: pointer;
     text-align: center;
     font-size: 20pt;
     max-width: 150px;
@@ -92,9 +109,16 @@ export default {
     margin: 0px 0px 363px 0px;
     position: absolute;
     animation: MoveUpDown 2s linear infinite;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
   }
 
   #egg-bubble {
+    cursor: pointer;
     text-align: center;
     left: auto;
     margin: 0px 0px 300px 0px;
@@ -110,6 +134,39 @@ export default {
     }
     50% {
       bottom: 30px;
+    }
+  }
+
+  @keyframes Tickle {
+    0%,
+    100% {
+      bottom: 0;
+    }
+    90% {
+      bottom: 20px;
+    }
+  }
+
+  @keyframes Shake {
+    10%,
+    90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+      transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+      transform: translate3d(4px, 0, 0);
     }
   }
 
