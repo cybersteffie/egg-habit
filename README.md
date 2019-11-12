@@ -7,7 +7,7 @@
 
 #### emotional support habit builder: let eggchan help you build healthy habits one week at a time!
 
-this app was bootstrapped with ([bento-starter](https://bento-starter.netlify.com/overview/) (an open-source Vue.js, Firebase, PWA kit), ([Vue/Vuex](https://vuex.vuejs.org/installation.html), Firebase) JavaScript, and CSS.
+this app was bootstrapped with ([bento-starter](https://bento-starter.netlify.com/overview/) (an open-source PWA kit utilizing [Vue.js/Vuex](https://vuex.vuejs.org/), Firebase), JavaScript, and CSS.
 
 ## project status
 
