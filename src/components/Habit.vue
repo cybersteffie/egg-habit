@@ -11,7 +11,6 @@
 
     <div v-if="showHabit" class="habit">
       <div id="habit-name">{{ habits[0].text }}</div>
-      <!-- <button id="delete-habit" value="x" @click="removeHabit">x</button> -->
       <div class="habit-tracker">
         <input
           v-for="day in days"

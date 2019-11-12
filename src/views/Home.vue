@@ -2,7 +2,12 @@
   <div class="page-wrapper">
     <Habit />
 
-    <img alt="egg" class="egg" src="@/assets/img/happy-yolk.png" />
+    <img
+      alt="egg"
+      class="egg"
+      src="@/assets/img/happy-yolk.png"
+      @click="changeEgg"
+    />
     <img
       id="egg-bubble"
       src="@/assets/img/speech-bubble.png"
@@ -14,6 +19,9 @@
 
 <script>
 import Habit from '@/components/Habit'
+// import happy from './assets/img/happy-yolk.png'
+// import cute from './assets/img/cute-yolk.png'
+// import cry from './assets/img/cry-yolk.png'
 
 export default {
   components: { Habit },
@@ -33,6 +41,7 @@ export default {
   },
   data() {
     return {
+      // images: [happy, cute, cry],
       selectedQuote: 'YOLK CAN DO IT!',
       quotes: [
         'YOLK CAN DO IT!',
@@ -57,7 +66,8 @@ export default {
       } else {
         this.selectedQuote = this.quotes[index + 1]
       }
-    }
+    },
+    changeEgg() {}
   }
 }
 </script>
@@ -88,15 +98,6 @@ export default {
     position: absolute;
     width: 250px;
     right: auto;
-    margin: 0px 0px 50px 0px;
-  }
-
-  .egg:active {
-    animation: Shake 0.3s;
-    position: absolute;
-    width: 250px;
-    right: auto;
-    bottom: auto;
     margin: 0px 0px 50px 0px;
   }
 
@@ -144,29 +145,6 @@ export default {
     }
     90% {
       bottom: 20px;
-    }
-  }
-
-  @keyframes Shake {
-    10%,
-    90% {
-      transform: translate3d(-1px, 0, 0);
-    }
-
-    20%,
-    80% {
-      transform: translate3d(2px, 0, 0);
-    }
-
-    30%,
-    50%,
-    70% {
-      transform: translate3d(-4px, 0, 0);
-    }
-
-    40%,
-    60% {
-      transform: translate3d(4px, 0, 0);
     }
   }
 
