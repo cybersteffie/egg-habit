@@ -4,28 +4,27 @@
       v-if="!showHabit"
       id="habit-input"
       type="text"
-      name="input-habit"
+      :value="habitNameToCreate"
       placeholder="this week I will..."
-      @keyup.enter="addHabit"
+      @input="setHabitNameToCreate($event.target.value)"
+      @keyup.enter="triggerAddHabitAction"
     />
 
-    <div v-if="showHabit" class="habit">
-      <div id="habit-name">{{ habits[0].text }}</div>
-      <div class="habit-tracker">
-        <input
-          v-for="day in days"
-          id="habit-day"
-          :key="day"
-          type="checkbox"
-          @click="toggleDay(day)"
-        />
-      </div>
+    <div class="habit-tracker">
+      <input
+        v-for="day in days"
+        id="habit-day"
+        :key="day"
+        type="checkbox"
+        @click="toggleDay(day)"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import Swal from 'sweetalert2'
+import { mapMutations, mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -39,7 +38,7 @@ export default {
         'friday',
         'saturday'
       ],
-      habits: [
+      habitsArr: [
         {
           text: '',
           show: false,
@@ -57,11 +56,18 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('habits', ['isHabitDeletionPending']),
+    ...mapState('habits', [
+      'habits',
+      'habitNameToCreate',
+      'habitCreationPending'
+    ]),
+    ...mapState('app', ['networkOnLine']),
     showHabit() {
-      return this.habits[0].show
+      return this.habitsArr[0].show
     },
     allTasksButOneCompleted() {
-      const arrayOfVal = Object.values(this.habits[0].days)
+      const arrayOfVal = Object.values(this.habitsArr[0].days)
       console.log(arrayOfVal)
       let count = 0
 
@@ -79,6 +85,8 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('habits', ['setHabitNameToCreate']),
+    ...mapActions('habits', ['triggerAddHabitAction']),
     addHabit(event) {
       this.habits[0].text = event.target.value
       this.habits[0].show = true
@@ -170,11 +178,11 @@ export default {
 }
 
 #habit-day {
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  transform: scale(2);
+  -ms-transform: scale(4); /* IE */
+  -moz-transform: scale(4); /* FF */
+  -webkit-transform: scale(4); /* Safari and Chrome */
+  -o-transform: scale(4); /* Opera */
+  transform: scale(4);
   margin: 10px;
 }
 </style>

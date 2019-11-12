@@ -1,30 +1,21 @@
 <template>
   <div class="page-wrapper">
-    <Habit />
-
-    <img
-      alt="egg"
-      class="egg"
-      src="@/assets/img/happy-yolk.png"
-      @click="changeEgg"
-    />
-    <img
-      id="egg-bubble"
-      src="@/assets/img/speech-bubble.png"
-      @click="changeSelectedQuote"
-    />
+    <AddHabit />
+    <img alt="egg" class="egg" src="@/assets/img/happy-yolk.png" @click="changeEgg" />
+    <img id="egg-bubble" src="@/assets/img/speech-bubble.png" @click="changeSelectedQuote" />
     <h1 class="egg-text" @click="changeSelectedQuote">{{ showQuote }}</h1>
+  
   </div>
 </template>
 
 <script>
-import Habit from '@/components/Habit'
+import AddHabit from '@/components/AddHabit'
 // import happy from './assets/img/happy-yolk.png'
 // import cute from './assets/img/cute-yolk.png'
 // import cry from './assets/img/cry-yolk.png'
 
 export default {
-  components: { Habit },
+  components: { AddHabit },
   head() {
     return {
       title: {
@@ -80,86 +71,85 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.logo {
+  margin-bottom: 3rem;
+}
 
-  .logo {
-    margin-bottom: 3rem;
-  }
+.egg {
+  animation: MoveUpDown 2s linear infinite;
+  position: absolute;
+  width: 250px;
+  right: auto;
+  margin: 0px 0px 50px 0px;
+}
 
-  .egg {
-    animation: MoveUpDown 2s linear infinite;
-    position: absolute;
-    width: 250px;
-    right: auto;
-    margin: 0px 0px 50px 0px;
-  }
+.egg:hover {
+  animation: Tickle 0.3s linear infinite;
+  position: absolute;
+  width: 250px;
+  right: auto;
+  margin: 0px 0px 50px 0px;
+}
 
-  .egg:hover {
-    animation: Tickle 0.3s linear infinite;
-    position: absolute;
-    width: 250px;
-    right: auto;
-    margin: 0px 0px 50px 0px;
-  }
+.egg-text {
+  cursor: pointer;
+  text-align: center;
+  font-size: 20pt;
+  max-width: 150px;
+  right: auto;
+  margin: 0px 0px 363px 0px;
+  position: absolute;
+  animation: MoveUpDown 2s linear infinite;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
 
-  .egg-text {
-    cursor: pointer;
-    text-align: center;
-    font-size: 20pt;
-    max-width: 150px;
-    right: auto;
-    margin: 0px 0px 363px 0px;
-    position: absolute;
-    animation: MoveUpDown 2s linear infinite;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none;
-  }
+#egg-bubble {
+  cursor: pointer;
+  text-align: center;
+  left: auto;
+  margin: 0px 0px 300px 0px;
+  width: 200px;
+  position: absolute;
+  animation: MoveUpDown 2s linear infinite;
+}
 
-  #egg-bubble {
-    cursor: pointer;
-    text-align: center;
-    left: auto;
-    margin: 0px 0px 300px 0px;
-    width: 200px;
-    position: absolute;
-    animation: MoveUpDown 2s linear infinite;
+@keyframes MoveUpDown {
+  0%,
+  100% {
+    bottom: 0;
   }
+  50% {
+    bottom: 30px;
+  }
+}
 
-  @keyframes MoveUpDown {
-    0%,
-    100% {
-      bottom: 0;
-    }
-    50% {
-      bottom: 30px;
-    }
+@keyframes Tickle {
+  0%,
+  100% {
+    bottom: 0;
   }
+  90% {
+    bottom: 20px;
+  }
+}
 
-  @keyframes Tickle {
-    0%,
-    100% {
-      bottom: 0;
-    }
-    90% {
-      bottom: 20px;
-    }
-  }
-
-  .documentation-link {
-    display: inline-block;
-    font-size: 1.2rem;
-    color: #fff;
-    background-color: #5d6788;
-    padding: 0.8rem 1.6rem;
-    border-radius: 4px;
-    transition: background-color 0.1s ease;
-    box-sizing: border-box;
-    text-decoration: none;
-    width: fit-content;
-    font-weight: 500;
-  }
+.documentation-link {
+  display: inline-block;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #5d6788;
+  padding: 0.8rem 1.6rem;
+  border-radius: 4px;
+  transition: background-color 0.1s ease;
+  box-sizing: border-box;
+  text-decoration: none;
+  width: fit-content;
+  font-weight: 500;
 }
 </style>
