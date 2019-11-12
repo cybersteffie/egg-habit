@@ -1,10 +1,10 @@
 <template>
   <div class="page-wrapper">
     <AddHabit />
+
     <img alt="egg" class="egg" src="@/assets/img/happy-yolk.png" @click="changeEgg" />
     <img id="egg-bubble" src="@/assets/img/speech-bubble.png" @click="changeSelectedQuote" />
     <h1 class="egg-text" @click="changeSelectedQuote">{{ showQuote }}</h1>
-  
   </div>
 </template>
 

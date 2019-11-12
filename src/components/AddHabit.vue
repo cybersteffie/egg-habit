@@ -7,17 +7,20 @@
       :value="habitNameToCreate"
       placeholder="this week I will..."
       @input="setHabitNameToCreate($event.target.value)"
-      @keyup.enter="triggerAddHabitAction"
+      @keyup.enter="addHabit"
     />
 
-    <div class="habit-tracker">
-      <input
-        v-for="day in days"
-        id="habit-day"
-        :key="day"
-        type="checkbox"
-        @click="toggleDay(day)"
-      />
+    <div v-if="showHabit" class="habit">
+      {{ habitsArr[0].text }}
+      <div class="habit-tracker">
+        <input
+          v-for="day in days"
+          id="habit-day"
+          :key="day"
+          type="checkbox"
+          @click="toggleDay(day)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -88,11 +91,12 @@ export default {
     ...mapMutations('habits', ['setHabitNameToCreate']),
     ...mapActions('habits', ['triggerAddHabitAction']),
     addHabit(event) {
-      this.habits[0].text = event.target.value
-      this.habits[0].show = true
+      console.log('run')
+      this.habitsArr[0].text = event.target.value
+      this.habitsArr[0].show = true
     },
     toggleDay(dayToToggle) {
-      this.habits[0].days[dayToToggle] = true
+      this.habitsArr[0].days[dayToToggle] = true
       this.allComplete()
     },
     removeHabit() {
@@ -105,7 +109,7 @@ export default {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete'
       }).then(
-        (this.habits[0] = {
+        (this.habitsArr[0] = {
           text: '',
           show: false,
           days: {
@@ -122,14 +126,14 @@ export default {
     },
     allComplete() {
       if (this.allTasksButOneCompleted) {
-        this.habits[0].show = false
-        console.log('allCompleteFunc', this.habits[0].days)
+        this.habitsArr[0].show = false
+        console.log('allCompleteFunc', this.habitsArr[0].days)
         Swal.fire({
           title: `You're freakin' awesome!`,
           text: 'One week down.',
           icon: 'success'
         }).then(
-          (this.habits[0].days = {
+          (this.habitsArr[0].days = {
             sunday: false,
             monday: false,
             tuesday: false,

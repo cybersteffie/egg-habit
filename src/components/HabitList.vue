@@ -1,6 +1,6 @@
 <template>
   <div>
-    <habit-item
+    <HabitItem
       v-for="(habit, index) in habits"
       :key="habit.id"
       class="habit-row"
@@ -9,7 +9,7 @@
       :disable-actions="!networkOnLine"
       :data="habit"
       @deleteHabit="deleteUserHabit"
-    ></habit-item>
+    ></HabitItem>
   </div>
 </template>
 

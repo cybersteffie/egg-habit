@@ -1,16 +1,14 @@
 <template>
   <div class="page-wrapper">
-    <AddHabit></AddHabit>
     <HabitList class="habit-list"></HabitList>
   </div>
 </template>
 
 <script>
 import HabitList from '@/components/HabitList'
-import AddHabit from '@/components/AddHabit'
 
 export default {
-  components: { HabitList, AddHabit }
+  components: { HabitList }
 }
 </script>
 
