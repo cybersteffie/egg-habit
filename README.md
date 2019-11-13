@@ -26,8 +26,8 @@ view my PWA publically @ [egg-habit.web.app](https://egg-habit.web.app/home/). t
 - weekly habits: customize # of times per week
 - weekly habits: store weekly progress data to user
 - stats page: top goals
-- stats page: goal # of times completed
-- stats page: goal # of times completed
+- stats page: # of weeks weekly goal completed
+- stats page: # of days weekly goal completed
 - yolkan change to happy after goal completed
 
 ## screen shot(s)
