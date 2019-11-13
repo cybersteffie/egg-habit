@@ -153,7 +153,7 @@ export default {
 <style lang="scss" scoped>
 .habit {
   font-weight: bold;
-  font-size: 50px;
+  font-size: 35px;
   text-align: center;
   padding: 20px;
 }
@@ -175,6 +175,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-items: center;
+  margin: 10px;
 }
 
 #delete-habit {

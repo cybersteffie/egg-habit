@@ -81,9 +81,15 @@ export default {
   width: 250px;
   right: auto;
   margin: 0px 0px 50px 0px;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }
 
-.egg:active {
+.egg:hover {
   animation: Tickle 0.3s linear infinite;
   position: absolute;
   width: 250px;

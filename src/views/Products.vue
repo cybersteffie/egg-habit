@@ -1,6 +1,9 @@
 <template>
   <div class="page-wrapper">
-    <h1 class="products-page-title">To be released...</h1>
+    <h1 class="products-page-title">
+      coming soon!
+      <img class="construction-egg" src="../assets/img/cute-yolk.png" />
+    </h1>
   </div>
 </template>
 
@@ -9,7 +12,11 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-@import '@/theme/variables.scss';
+// @import '@/theme/variables.scss';
+
+.construction-egg {
+  width: 20px;
+}
 
 .products-page-title {
   text-align: center;
