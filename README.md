@@ -32,8 +32,8 @@ view my PWA publically @ [egg-habit.web.app](https://egg-habit.web.app/home/). t
 
 ## screen shot(s)
 
-<div align="center"><img src="https://i.ibb.co/t2XXybk/screenshot-1.png" alt="screenshot-1" border="0" width="40%">
-<img src="https://i.ibb.co/WV4QC7F/screenshot-2.png" alt="screenshot-2" border="0" width="40%"></div>
+<div align="center"><img src="https://i.ibb.co/t2XXybk/screenshot-1.png" border="1px" alt="screenshot-1" border="0" width="40%">
+<img src="https://i.ibb.co/WV4QC7F/screenshot-2.png" border="1px" alt="screenshot-2" border="0" width="40%"></div>
 
 ## installation & setup
 
