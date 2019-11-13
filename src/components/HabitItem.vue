@@ -1,14 +1,13 @@
 <template>
-  <div class="product-item">
-    <router-link
-      class="product-link"
-      :to="{ name: 'product', params: { id: data.id } }"
-    >#{{ index }} {{ data.name }}</router-link>
+  <div class="habit-item">
+    <div class="habit-link" :to="{ name: 'habit', params: { id: data.id } }">
+      <h1>{{ data.name }}</h1>
+    </div>
     <div
       v-if="!disableActions"
       class="delete-btn"
-      @click="$emit('deleteProduct', data.id)"
-    >{{ isProductDeletionPending ? 'deleting' : 'delete' }}</div>
+      @click="$emit('deleteHabit', data.id)"
+    >{{ isHabitDeletionPending ? 'x' : 'x' }}</div>
   </div>
 </template>
 
@@ -17,7 +16,7 @@ export default {
   props: {
     data: Object,
     index: Number,
-    isProductDeletionPending: Boolean,
+    isHabitDeletionPending: Boolean,
     disableActions: Boolean
   }
 }
@@ -26,25 +25,22 @@ export default {
 <style lang="scss" scoped>
 @import '@/theme/variables.scss';
 
-.product-item {
+.habit-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: black;
   width: 100%;
-
-  .product-link {
-    color: $vue-color;
-  }
 
   .delete-btn {
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 0px 5px;
     border: 1px solid;
     display: inline-block;
     border-radius: 3px;
     margin-left: 10px;
-    color: $danger-color;
-    border-color: $danger-color;
+    color: grey;
+    border-color: grey;
   }
 }
 </style>

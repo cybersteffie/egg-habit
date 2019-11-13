@@ -1,16 +1,17 @@
 <template>
-  <div>
+  <div class="habit">
     <input
       v-if="!showHabit"
       id="habit-input"
       type="text"
-      name="input-habit"
+      :value="habitNameToCreate"
       placeholder="this week I will..."
+      @input="setHabitNameToCreate($event.target.value)"
       @keyup.enter="addHabit"
     />
 
-    <div v-if="showHabit" class="habit">
-      <div id="habit-name">{{ habits[0].text }}</div>
+    <div v-if="showHabit">
+      {{ habitsArr[0].text }}
       <div class="habit-tracker">
         <input
           v-for="day in days"
@@ -26,6 +27,7 @@
 
 <script>
 import Swal from 'sweetalert2'
+import { mapMutations, mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -39,7 +41,7 @@ export default {
         'friday',
         'saturday'
       ],
-      habits: [
+      habitsArr: [
         {
           text: '',
           show: false,
@@ -57,11 +59,18 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('habits', ['isHabitDeletionPending']),
+    ...mapState('habits', [
+      'habits',
+      'habitNameToCreate',
+      'habitCreationPending'
+    ]),
+    ...mapState('app', ['networkOnLine']),
     showHabit() {
-      return this.habits[0].show
+      return this.habitsArr[0].show
     },
     allTasksButOneCompleted() {
-      const arrayOfVal = Object.values(this.habits[0].days)
+      const arrayOfVal = Object.values(this.habitsArr[0].days)
       console.log(arrayOfVal)
       let count = 0
 
@@ -79,12 +88,15 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('habits', ['setHabitNameToCreate']),
+    ...mapActions('habits', ['triggerAddHabitAction']),
     addHabit(event) {
-      this.habits[0].text = event.target.value
-      this.habits[0].show = true
+      console.log('run')
+      this.habitsArr[0].text = event.target.value
+      this.habitsArr[0].show = true
     },
     toggleDay(dayToToggle) {
-      this.habits[0].days[dayToToggle] = true
+      this.habitsArr[0].days[dayToToggle] = true
       this.allComplete()
     },
     removeHabit() {
@@ -97,7 +109,7 @@ export default {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete'
       }).then(
-        (this.habits[0] = {
+        (this.habitsArr[0] = {
           text: '',
           show: false,
           days: {
@@ -114,14 +126,15 @@ export default {
     },
     allComplete() {
       if (this.allTasksButOneCompleted) {
-        this.habits[0].show = false
-        console.log('allCompleteFunc', this.habits[0].days)
+        this.habitsArr[0].show = false
+        this.triggerAddHabitAction(this.habitsArr[0])
+        console.log('allCompleteFunc', this.habitsArr[0].days)
         Swal.fire({
           title: `You're freakin' awesome!`,
           text: 'One week down.',
           icon: 'success'
         }).then(
-          (this.habits[0].days = {
+          (this.habitsArr[0].days = {
             sunday: false,
             monday: false,
             tuesday: false,
@@ -142,7 +155,7 @@ export default {
   font-weight: bold;
   font-size: 50px;
   text-align: center;
-  padding: 0px;
+  padding: 20px;
 }
 
 #habit-input {
@@ -170,11 +183,11 @@ export default {
 }
 
 #habit-day {
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  transform: scale(2);
-  margin: 10px;
+  -ms-transform: scale(3); /* IE */
+  -moz-transform: scale(3); /* FF */
+  -webkit-transform: scale(3); /* Safari and Chrome */
+  -o-transform: scale(3); /* Opera */
+  transform: scale(3);
+  margin: 20px;
 }
 </style>

@@ -1,24 +1,18 @@
 <template>
   <div class="page-wrapper">
-    <h1 class="login-page-title">Login page</h1>
-
     <!-- Loader -->
     <div v-show="user === undefined" data-test="loader">Authenticating...</div>
 
     <!-- Offline instruction -->
-    <div v-show="!networkOnLine" data-test="offline-instruction">
-      Please check your connection, login feature is not available offline.
-    </div>
+    <div
+      v-show="!networkOnLine"
+      data-test="offline-instruction"
+    >Please check your connection, login feature is not available offline.</div>
 
     <p v-if="loginError">{{ loginError }}</p>
     <!-- Auth UI -->
-    <div
-      v-show="user !== undefined && !user && networkOnLine"
-      data-test="login-btn"
-      class="login-btn"
-      @click="login"
-    >
-      Login with google
+    <div v-show="user !== undefined && !user && networkOnLine" data-test="login-btn" @click="login">
+      <img class="google-btn" src="../assets/img/btn_google.png" />
     </div>
   </div>
 </template>
@@ -94,24 +88,27 @@ export default {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+.login-page-title {
+  text-align: center;
+}
 
-  .login-page-title {
-    text-align: center;
+.login-btn {
+  margin-top: 20px;
+  cursor: pointer;
+  padding: 5px 20px;
+  border: 1px solid;
+  display: inline-block;
+  border-radius: 3px;
+  border-color: #2c3e50;
+
+  &:hover {
+    color: $vue-color;
+    border-color: $vue-color;
   }
+}
 
-  .login-btn {
-    margin-top: 20px;
-    cursor: pointer;
-    padding: 5px 20px;
-    border: 1px solid;
-    display: inline-block;
-    border-radius: 3px;
-    border-color: #2c3e50;
-
-    &:hover {
-      color: $vue-color;
-      border-color: $vue-color;
-    }
-  }
+#google-btn {
+  width: 50%;
 }
 </style>
