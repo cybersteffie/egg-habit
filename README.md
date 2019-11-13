@@ -3,9 +3,9 @@
 </p>
 <p align="center"><img src="./src/assets/img/happy-yolk.png" width="100px" /></p>
 
-# egg-habit
+# yolkan: eggcouraging habit builder
 
-#### emotional support habit builder: let eggchan help you build healthy habits one week at a time!
+#### build healthy habits one week at a time!
 
 this app was bootstrapped with ([bento-starter](https://bento-starter.netlify.com/overview/) (an open-source PWA kit utilizing [Vue.js/Vuex](https://vuex.vuejs.org/), Firebase), JavaScript, and CSS.
 
@@ -17,7 +17,9 @@ view my PWA publically @ [egg-habit.web.app](https://egg-habit.web.app/home/). t
 
 - add a single weekly habit
 - displays checkbox for every day
+- click on yolkchan 
 - congratulates you when you've met your goal
+- stores weekly goals (bug)
 
 **future features:**
 
