@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="habit">
     <input
       v-if="!showHabit"
       id="habit-input"
@@ -10,7 +10,7 @@
       @keyup.enter="addHabit"
     />
 
-    <div v-if="showHabit" class="habit">
+    <div v-if="showHabit">
       {{ habitsArr[0].text }}
       <div class="habit-tracker">
         <input
@@ -127,6 +127,7 @@ export default {
     allComplete() {
       if (this.allTasksButOneCompleted) {
         this.habitsArr[0].show = false
+        this.triggerAddHabitAction(this.habitsArr[0])
         console.log('allCompleteFunc', this.habitsArr[0].days)
         Swal.fire({
           title: `You're freakin' awesome!`,
@@ -154,7 +155,7 @@ export default {
   font-weight: bold;
   font-size: 50px;
   text-align: center;
-  padding: 0px;
+  padding: 20px;
 }
 
 #habit-input {
@@ -182,11 +183,11 @@ export default {
 }
 
 #habit-day {
-  -ms-transform: scale(4); /* IE */
-  -moz-transform: scale(4); /* FF */
-  -webkit-transform: scale(4); /* Safari and Chrome */
-  -o-transform: scale(4); /* Opera */
-  transform: scale(4);
-  margin: 10px;
+  -ms-transform: scale(3); /* IE */
+  -moz-transform: scale(3); /* FF */
+  -webkit-transform: scale(3); /* Safari and Chrome */
+  -o-transform: scale(3); /* Opera */
+  transform: scale(3);
+  margin: 20px;
 }
 </style>

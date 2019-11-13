@@ -1,8 +1,7 @@
 <template>
   <div class="page-wrapper">
     <AddHabit />
-
-    <img alt="egg" class="egg" src="@/assets/img/happy-yolk.png" @click="changeEgg" />
+    <img alt="egg" class="egg" src="@/assets/img/happy-yolk.png" />
     <img id="egg-bubble" src="@/assets/img/speech-bubble.png" @click="changeSelectedQuote" />
     <h1 class="egg-text" @click="changeSelectedQuote">{{ showQuote }}</h1>
   </div>
@@ -16,6 +15,17 @@ import AddHabit from '@/components/AddHabit'
 
 export default {
   components: { AddHabit },
+  data() {
+    return {
+      selectedQuote: 'YOLK CAN DO IT!',
+      quotes: [
+        'YOLK CAN DO IT!',
+        'YOLK GOT THIS!',
+        'YES, YOU CAN!',
+        'EGG-CELLENT.'
+      ]
+    }
+  },
   head() {
     return {
       title: {
@@ -23,22 +33,10 @@ export default {
       },
       meta: [
         {
-          name: 'description',
-          content: `egg-habit`,
+          name: 'simple weekly habit tracker',
+          content: `yolkan`,
           id: 'desc'
         }
-      ]
-    }
-  },
-  data() {
-    return {
-      // images: [happy, cute, cry],
-      selectedQuote: 'YOLK CAN DO IT!',
-      quotes: [
-        'YOLK CAN DO IT!',
-        'YOLK GOT THIS!',
-        'YES, YOU CAN!',
-        'EGG-CELLENT.'
       ]
     }
   },
@@ -54,11 +52,12 @@ export default {
       if (index === this.quotes.length - 1) {
         const firstIndex = 0
         this.selectedQuote = this.quotes[firstIndex]
+        console.log('firstindex')
       } else {
         this.selectedQuote = this.quotes[index + 1]
+        console.log('else')
       }
-    },
-    changeEgg() {}
+    }
   }
 }
 </script>
@@ -84,7 +83,7 @@ export default {
   margin: 0px 0px 50px 0px;
 }
 
-.egg:hover {
+.egg:active {
   animation: Tickle 0.3s linear infinite;
   position: absolute;
   width: 250px;
